@@ -6,7 +6,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week 2 Gun Program</title>
     <!--PUT YOUR NAME IN THE META TAG FOR AUTHOR-->
-    <meta name="author" content="YOUR NAME GOES HERE">
+    <meta name="author" content="Matt Gerard">
     <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
     <meta name="description" content="Small programming assignment using events, variables, functions and conditional logic">
 </head>
@@ -48,11 +48,15 @@
         //Amount of ammo currently loaded into the weapon
         var currentAmmo = max
         //Amount of ammo in the character's inventory
-        var inventory = 10
+        var inventory = 12
+        //Amount of ammo currently in the character's inventory
+        var currentInventory = inventory
+
 
         //Changes the words between <span> and </span> for each span element
-        triggerDisplay.innerHTML = `AMMO: ${currentAmmo}`
-        reloadDisplay.innerHTML = `INVENTORY: ${inventory}`
+        triggerDisplay.innerHTML = `AMMO: ${currentAmmo} / 6`
+        
+        reloadDisplay.innerHTML = `INVENTORY: ${currentInventory} / 12`
 
         /*
         Adds functionality to the button so that when it is clicked it will execute the shoot function
@@ -73,7 +77,7 @@
             {
                 currentAmmo = 0;
             }
-            triggerDisplay.innerHTML = `AMMO: ${currentAmmo}`
+            triggerDisplay.innerHTML = `AMMO: ${currentAmmo} / 6`
         }
 
         /*------------------INSTRUCTIONS------------------
@@ -86,6 +90,27 @@
             c. Display the result on in the reloadDisplay by changing it's innerHTML
             d. EXTRA CHALLENGE: Figure out how much ammo to load. This will require some math based on how much ammo has been expended and the maximum amount ammo the weapon can hold
         --------------------------------------------------*/
+
+        /*
+        Adds functionality to the button so that when it is clicked it will execute the reload function
+        */        
+        reloadButton.addEventListener(`click`, reload)
+
+        function reload(event)
+        {
+            if(currentAmmo<max && currentInventory>0){
+                currentInventory--;
+                currentAmmo++;
+            }
+            
+            triggerDisplay.innerHTML = `AMMO: ${currentAmmo} / 6`
+            if(currentInventory<0)
+            {
+                currentInventory = 0;
+            }
+            reloadDisplay.innerHTML = `INVENTORY: ${currentInventory} / 12`
+
+        }
     </script>
 </body>
 </html>
