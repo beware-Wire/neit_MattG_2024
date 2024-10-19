@@ -69,7 +69,7 @@ ctx.lineTo(668,554);
 ctx.lineTo(635,497);
 
 ctx.fillStyle = "#ffff00";
-ctx.strokeStyle = "rgba(32,32,32cc)";
+ctx.strokeStyle = "rgba(32,32,32)";
 
 ctx.fill();
 ctx.stroke();
