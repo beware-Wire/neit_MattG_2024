@@ -6,7 +6,7 @@ const ctx = c.getContext("2d");
 
 //Yellow Rectangle
 ctx.beginPath();
-ctx.fillStyle = "#FFCC00";
+ctx.fillStyle = "Yellow";
 ctx.fillRect(85, 302, 100, 100);
 ctx.lineWidth = "5";
 ctx.strokeStyle = "black";
@@ -18,8 +18,8 @@ ctx.stroke();
 //Circle
 ctx.beginPath()
 ctx.arc(385, 440, 67.5, 0, 2*Math.PI);
-ctx.fillStyle = "red";
-ctx.strokeStyle = "yellow";
+ctx.fillStyle = "#ffff00";
+ctx.strokeStyle = "red";
 ctx.fill();
 ctx.stroke();
 
@@ -30,7 +30,6 @@ ctx.beginPath();
 ctx.lineWidth = "5";
 ctx.moveTo(85,683);
 ctx.lineTo(280,550);
-ctx.fillStyle = "255,0,0";
 ctx.strokeStyle = "rgba(255,0,0)";
 ctx.stroke();
 
@@ -69,7 +68,7 @@ ctx.lineTo(668,554);
 ctx.lineTo(635,497);
 
 ctx.fillStyle = "#ffff00";
-ctx.strokeStyle = "rgba(32,32,32cc)";
+ctx.strokeStyle = "rgba(32,32,32)";
 
 ctx.fill();
 ctx.stroke();
