@@ -6,7 +6,11 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Week 2 Gun Program</title>
     <!--PUT YOUR NAME IN THE META TAG FOR AUTHOR-->
+<<<<<<< HEAD
     <meta name="author" content="Matt Gerard">
+=======
+    <meta name="author" content="YOUR NAME GOES HERE">
+>>>>>>> cdb9446f150de13bd63341d11838b5c6920db8d2
     <!--xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx-->
     <meta name="description" content="Small programming assignment using events, variables, functions and conditional logic">
 </head>
@@ -48,6 +52,7 @@
         //Amount of ammo currently loaded into the weapon
         var currentAmmo = max
         //Amount of ammo in the character's inventory
+<<<<<<< HEAD
         var inventory = 12
         //Amount of ammo currently in the character's inventory
         var currentInventory = inventory
@@ -57,6 +62,13 @@
         triggerDisplay.innerHTML = `AMMO: ${currentAmmo} / 6`
         
         reloadDisplay.innerHTML = `INVENTORY: ${currentInventory} / 12`
+=======
+        var inventory = 10
+
+        //Changes the words between <span> and </span> for each span element
+        triggerDisplay.innerHTML = `AMMO: ${currentAmmo}`
+        reloadDisplay.innerHTML = `INVENTORY: ${inventory}`
+>>>>>>> cdb9446f150de13bd63341d11838b5c6920db8d2
 
         /*
         Adds functionality to the button so that when it is clicked it will execute the shoot function
@@ -77,7 +89,11 @@
             {
                 currentAmmo = 0;
             }
+<<<<<<< HEAD
             triggerDisplay.innerHTML = `AMMO: ${currentAmmo} / 6`
+=======
+            triggerDisplay.innerHTML = `AMMO: ${currentAmmo}`
+>>>>>>> cdb9446f150de13bd63341d11838b5c6920db8d2
         }
 
         /*------------------INSTRUCTIONS------------------
@@ -90,6 +106,7 @@
             c. Display the result on in the reloadDisplay by changing it's innerHTML
             d. EXTRA CHALLENGE: Figure out how much ammo to load. This will require some math based on how much ammo has been expended and the maximum amount ammo the weapon can hold
         --------------------------------------------------*/
+<<<<<<< HEAD
 
         /*
         Adds functionality to the button so that when it is clicked it will execute the reload function
@@ -111,6 +128,8 @@
             reloadDisplay.innerHTML = `INVENTORY: ${currentInventory} / 12`
 
         }
+=======
+>>>>>>> cdb9446f150de13bd63341d11838b5c6920db8d2
     </script>
 </body>
 </html>
