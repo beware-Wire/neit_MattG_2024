@@ -13,6 +13,7 @@ var timer = setInterval(main, fps)
 /*-------------INSTRUCTION--------------
 Create variable calledd score to store amount of "pickups" collected
 ---------------------------------------*/
+var score = 0;
 
 /*--------------avatar------------
 avatar is the "player controllable" Object
@@ -105,6 +106,7 @@ function main()
         /*----------INSTRUCTION------------
         increase the score by one
         -----------------------------------*/
+        score++;
     }
 
 
@@ -118,6 +120,7 @@ function main()
         {
             pickups[i].x = 1000;
             avatar.color = pickups[i].color;
+            score++;
         }
         pickups[i].render();
     }
@@ -127,7 +130,8 @@ function main()
 
    /*--------------text----------------*/
    //makes the text center aligned instead of left aligned
-   ctx.textAlign = `left`;
+   ctx.textAlign = `center`;
+  
 
     /*----------INSTRUCTION------------
     Set the context's font property to use 64px Arial 
@@ -135,6 +139,9 @@ function main()
     HINT: You will have to research how this works 
     W3schools.com and your book can help
     -----------------------------------*/
+
+    ctx.font = "64px Arial";
+    ctx.fillText(score, 25, 60);
 }
 
 //random number generator
