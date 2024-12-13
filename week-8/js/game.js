@@ -29,10 +29,7 @@ var grass= document.getElementById("grass");
 var wallDes= document.getElementById("wall");
 var wallDesS= document.getElementById("wallS");
 var smiley= document.getElementById("avatar");
-var basketDesU= document.getElementById("basketU");
-var basketDesL= document.getElementById("basketL");
-var basketDesR= document.getElementById("basketR");
-var basketDesD= document.getElementById("basketD");
+var basketDes= document.getElementById("basket");
 
 //var strawberry= document.getElementById("default");
 
@@ -50,7 +47,7 @@ testEnemy.world = level
 
 var backGround = new GameObject();
 backGround.x = -350;
-backGround.y = 0;
+backGround.y = 50;
 backGround.w = 2000;
 backGround.h = 2000;
 backGround.color = `green`;
@@ -81,8 +78,7 @@ for(var i=0; i<amt; i++)
     enemies[i].x = rand(-1055, 350);
     enemies[i].y = rand(-465, 950);
     enemies[i].world = level
-    myImage.scr='images/strawberry.png';
-    if(state == init){
+    if(state == lose){
         enemies[i].x = rand(-1055, 350);
         enemies[i].y = rand(-465, 950);
     
@@ -112,30 +108,30 @@ for(var i=0; i<amt; i++)
 var amt2 = 14;
 var enemies2 = [];
 for(var i=0; i<amt2; i++)
+{
+    enemies2[i] = new GameObject();
+    enemies2[i].color = `#000000`;
+    enemies2[i].w = 50; 
+    enemies2[i].h = 50;
+    enemies2[i].x = rand(-1055, 350);
+    enemies2[i].y = rand(-465, 950);
+    enemies2[i].world = level
+
+
+
+    //Enemy defeat
+    while(enemies2[i].overlaps(basket))
     {
-        enemies2[i] = new GameObject();
-        enemies2[i].color = `#000000`;
-        enemies2[i].w = 50; 
-        enemies2[i].h = 50;
-        enemies2[i].x = rand(-1055, 350);
-        enemies2[i].y = rand(-465, 950);
-        enemies2[i].world = level
-    
-        //Enemy defeat
-        while(enemies2[i].overlaps(basket))
+        if(enemies2[i].x < basket.x)
         {
-            if(enemies2[i].x < basket.x)
-            {
-                enemies2[i].x-=1;
-            }
-            if(enemies2[i].x >= basket.x)
-            {
-                enemies2[i].x++;
-            }
+            enemies2[i].x-=1;
         }
-        
-        
+        if(enemies2[i].x >= basket.x)
+        {
+            enemies2[i].x++;
+        }
     }
+}
 
 
 
@@ -196,6 +192,7 @@ function menu()
     if(clicked(button))
     {
         //draw
+        const para = document.createElement("p");
         state = game;
     }
     button.render()
@@ -210,8 +207,17 @@ function win()
     let score = parseInt(document.querySelector('.score').innerHTML);
     document.querySelector('.score').innerHTML = count;
     state = init;
-        
-    
+    for(var i=0; i<amt; i++)
+    {
+        enemies[i].x = rand(-1055, 350);
+        enemies[i].y = rand(-465, 950);    
+    }
+    for(var i=0; i<amt2; i++)
+    {
+        enemies2[i].x = rand(-1055, 350);
+        enemies2[i].y = rand(-465, 950);    
+    }
+
 }
 function lose()
 {    
@@ -219,6 +225,17 @@ function lose()
     let score = parseInt(document.querySelector('.score').innerHTML);
     document.querySelector('.score').innerHTML = count;
     state = init;
+    for(var i=0; i<amt; i++)
+    {
+        enemies[i].x = rand(-1055, 350);
+        enemies[i].y = rand(-465, 950);    
+    }
+    for(var i=0; i<amt2; i++)
+    {
+        enemies2[i].x = rand(-1055, 350);
+        enemies2[i].y = rand(-465, 950);    
+    }
+    
 }
 
 function game()
@@ -373,6 +390,8 @@ function game()
         }
         enemies[i].renderImage(strawberry);
     }
+
+
     
     for(var i=0; i<enemies2.length; i++)
         {
@@ -393,7 +412,7 @@ function game()
         }
     
     testEnemy.renderImage(bomb);
-    basket.renderImage(basketDesD);
+    basket.renderImage(basketDes);
     //avatar.render();
     
 
