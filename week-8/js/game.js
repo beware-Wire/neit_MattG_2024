@@ -75,18 +75,18 @@ for(var i=0; i<amt; i++)
     enemies[i].color = `red`;
     enemies[i].w = 50; 
     enemies[i].h = 50;
-    enemies[i].x = rand(-1055, 350);
+    enemies[i].x = rand(-1055, 300);
     enemies[i].y = rand(-465, 950);
     enemies[i].world = level
     if(state == lose){
-        enemies[i].x = rand(-1055, 350);
+        enemies[i].x = rand(-1055, 300);
         enemies[i].y = rand(-465, 950);
     
     }
 
     myImage.width = 50
     myImage.h = 50;
-    myImage.x = rand(-1055, 350);
+    myImage.x = rand(-1055, 300);
     myImage.y = rand(-465, 950);
     document.body.appendChild(myImage);
     //Enemy defeat
@@ -113,7 +113,7 @@ for(var i=0; i<amt2; i++)
     enemies2[i].color = `#000000`;
     enemies2[i].w = 50; 
     enemies2[i].h = 50;
-    enemies2[i].x = rand(-1055, 350);
+    enemies2[i].x = rand(-1055, 300);
     enemies2[i].y = rand(-465, 950);
     enemies2[i].world = level
 
@@ -141,7 +141,7 @@ function init()
 
     avatar.color = `green`;
 
-    level.x = 100; 
+    level.x = 500; 
     level.y = 0;
 
     //Top
@@ -158,7 +158,7 @@ function init()
     wall[1].h = 2500;
     wall[1].w = 500;
     wall[1].color = `pink`
-    wall[1].x = 635;
+    wall[1].x = 600;
     wall[1].y = 250
     wall[1].world = level
 
@@ -209,12 +209,12 @@ function win()
     state = init;
     for(var i=0; i<amt; i++)
     {
-        enemies[i].x = rand(-1055, 350);
+        enemies[i].x = rand(-1055, 300);
         enemies[i].y = rand(-465, 950);    
     }
     for(var i=0; i<amt2; i++)
     {
-        enemies2[i].x = rand(-1055, 350);
+        enemies2[i].x = rand(-1055, 300);
         enemies2[i].y = rand(-465, 950);    
     }
 
@@ -351,21 +351,21 @@ function game()
         //testEnemy.x = 10000;
         avatar.color = testEnemy.color;
         state = lose;
-        testEnemy.x = rand(-1055, 350);
+        testEnemy.x = rand(-1055, 300);
         testEnemy.y = rand(-465, 950);
     }
 
     if(enemies.x > 10000){
-        enemies[i].x = rand(-1055, 350);
+        enemies[i].x = rand(-1055, 300);
         enemies[i].y = rand(-465, 950);
 
     } else if (state == menu) {
-        enemies[i].x = rand(-1055, 350);
+        enemies[i].x = rand(-1055, 300);
         enemies[i].y = rand(-465, 950);        
     }
 
     if(enemies2.x > 10000){
-        enemies2[i].x = rand(-1055, 350);
+        enemies2[i].x = rand(-1055, 300);
         enemies2[i].y = rand(-465, 950);
 
     }
@@ -402,7 +402,7 @@ function game()
             {
                 avatar.color = enemies2.color;
                 state = lose;
-                testEnemy.x = rand(-1055, 350);
+                testEnemy.x = rand(-1055, 300);
                 testEnemy.y = rand(-465, 950);
                 
 
