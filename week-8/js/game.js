@@ -17,11 +17,24 @@ var button = new GameObject();
 var avatar = new GameObject();
 var wall = new GameObject();
 var level = new GameObject();
-var sheild = new GameObject();
+var basket = new GameObject();
 var enemyShield = new GameObject();
 var bad = new GameObject();
 var wall = [];
 var count = 0; 
+const myImage = new Image();
+var strawberry= document.getElementById("default");
+var bomb= document.getElementById("bomb");
+var grass= document.getElementById("grass");
+var wallDes= document.getElementById("wall");
+var wallDesS= document.getElementById("wallS");
+var smiley= document.getElementById("avatar");
+var basketDesU= document.getElementById("basketU");
+var basketDesL= document.getElementById("basketL");
+var basketDesR= document.getElementById("basketR");
+var basketDesD= document.getElementById("basketD");
+
+//var strawberry= document.getElementById("default");
 
 
 //enemy stuff
@@ -34,6 +47,23 @@ testEnemy.w = 50;
 testEnemy.h = 50;
 testEnemy.color = `black`;
 testEnemy.world = level
+
+var backGround = new GameObject();
+backGround.x = -350;
+backGround.y = 0;
+backGround.w = 2000;
+backGround.h = 2000;
+backGround.color = `green`;
+backGround.world = level;
+
+/*var backGround2 = new GameObject();
+backGround2.x = -350;
+backGround2.y = 0;
+backGround2.w = 1000;
+backGround2.h = 1000;
+backGround2.color = `green`;
+backGround2.world = level;
+*/
 
 
 
@@ -51,15 +81,26 @@ for(var i=0; i<amt; i++)
     enemies[i].x = rand(-1055, 350);
     enemies[i].y = rand(-465, 950);
     enemies[i].world = level
+    myImage.scr='images/strawberry.png';
+    if(state == init){
+        enemies[i].x = rand(-1055, 350);
+        enemies[i].y = rand(-465, 950);
+    
+    }
 
+    myImage.width = 50
+    myImage.h = 50;
+    myImage.x = rand(-1055, 350);
+    myImage.y = rand(-465, 950);
+    document.body.appendChild(myImage);
     //Enemy defeat
-    while(enemies[i].overlaps(sheild))
+    while(enemies[i].overlaps(basket))
     {
-        if(enemies[i].x < sheild.x)
+        if(enemies[i].x < basket.x)
         {
             enemies[i].x-=1;
         }
-        if(enemies[i].x >= sheild.x)
+        if(enemies[i].x >= basket.x)
         {
             enemies[i].x++;
         }
@@ -81,13 +122,13 @@ for(var i=0; i<amt2; i++)
         enemies2[i].world = level
     
         //Enemy defeat
-        while(enemies2[i].overlaps(sheild))
+        while(enemies2[i].overlaps(basket))
         {
-            if(enemies2[i].x < sheild.x)
+            if(enemies2[i].x < basket.x)
             {
                 enemies2[i].x-=1;
             }
-            if(enemies2[i].x >= sheild.x)
+            if(enemies2[i].x >= basket.x)
             {
                 enemies2[i].x++;
             }
@@ -104,7 +145,7 @@ function init()
 
     avatar.color = `green`;
 
-    level.x = 0; 
+    level.x = 100; 
     level.y = 0;
 
     //Top
@@ -121,7 +162,7 @@ function init()
     wall[1].h = 2500;
     wall[1].w = 500;
     wall[1].color = `pink`
-    wall[1].x = 650;
+    wall[1].x = 635;
     wall[1].y = 250
     wall[1].world = level
 
@@ -143,7 +184,7 @@ function init()
     wall[3].y = 1250
     wall[3].world = level
 
-    sheild.color = `#000000`;
+    basket.color = `#000000`;
 }
 
 init();
@@ -173,22 +214,21 @@ function win()
     
 }
 function lose()
-{
-    //console.log("Loser!");
-    
+{    
     window.alert("You lost :(    your score is " + count)
     let score = parseInt(document.querySelector('.score').innerHTML);
     document.querySelector('.score').innerHTML = count;
     state = init;
-    //console.log(location.href)
 }
 
 function game()
 {
+    backGround.renderImage(grass);
+
     if (count % 10 == 0){
         amt += 10;
         }
-    sheild.x = 10000;
+    basket.x = 10000;
     enemyShield.x = 10000;
     //Player Movement
     
@@ -211,32 +251,36 @@ function game()
     //Player's Shield
     if(up == true)
     {
-        sheild.x = avatar.top().x;
-        sheild.y = avatar.top().y;
-        sheild.w = 100;
-        sheild.h = 50;
-        
+        basket.x = avatar.top().x;
+        basket.y = avatar.top().y;
+        basket.w = 100;
+        basket.h = 50;
+
     }
     if(down == true)
     {
-        sheild.x = avatar.bottom().x;
-        sheild.y = avatar.bottom().y;
-        sheild.w = 100;
-        sheild.h = 50;
+        basket.x = avatar.bottom().x;
+        basket.y = avatar.bottom().y;
+        basket.w = 100;
+        basket.h = 50;
+
     }
     if(left == true)
     {
-        sheild.x = avatar.left().x;
-        sheild.y = avatar.left().y;
-        sheild.h = 100;
-        sheild.w = 50;
+        basket.x = avatar.left().x;
+        basket.y = avatar.left().y;
+        basket.h = 100;
+        basket.w = 50;
+
+
     }
     if(right == true)
     {
-        sheild.x = avatar.right().x;
-        sheild.y = avatar.right().y;
-        sheild.h = 100;
-        sheild.w = 50;
+        basket.x = avatar.right().x;
+        basket.y = avatar.right().y;
+        basket.h = 100;
+        basket.w = 50;
+
     }
 
     avatar.vx *= .85;
@@ -275,32 +319,11 @@ function game()
         
       
     }
-    for(let i=0; i<testEnemy.length; i++)
+    
+    //Stops bombs
+    for(let i=0; i<enemies2.length; i++)
     {
-        while(testEnemy[i].isOverPoint(avatar.bottom()))
-        {
-            avatar.vy = 0;
-            avatar.y--;
-            offset.y--;
-        }
-        while(testEnemy[i].isOverPoint(avatar.top()))
-        {
-            avatar.vy = 0;
-            avatar.y++;
-            offset.y++;
-        }
-        while(testEnemy[i].isOverPoint(avatar.left()))
-        {
-            avatar.vx = 0;
-            avatar.x++;
-            offset.x++;
-        }
-        while(testEnemy[i].isOverPoint(avatar.right()))
-        {
-            avatar.vx = 0;
-            avatar.x--;
-            offset.x--;
-        }
+        
         
       
     }
@@ -319,6 +342,9 @@ function game()
         enemies[i].x = rand(-1055, 350);
         enemies[i].y = rand(-465, 950);
 
+    } else if (state == menu) {
+        enemies[i].x = rand(-1055, 350);
+        enemies[i].y = rand(-465, 950);        
     }
 
     if(enemies2.x > 10000){
@@ -332,7 +358,7 @@ function game()
         /*----------INSTRUCTION------------
         make the avatar "collect" the pickups and increase the score
         -----------------------------------*/
-        if(enemies[i].overlaps(sheild))
+        if(enemies[i].overlaps(basket))
         {
             enemies[i].x = 10000;
             avatar.color = enemies[i].color;
@@ -345,7 +371,7 @@ function game()
             }
         
         }
-        enemies[i].render();
+        enemies[i].renderImage(strawberry);
     }
     
     for(var i=0; i<enemies2.length; i++)
@@ -356,21 +382,19 @@ function game()
             if(enemies2[i].overlaps(avatar))
             {
                 avatar.color = enemies2.color;
-        state = lose;
-        testEnemy.x = rand(-1055, 350);
-        testEnemy.y = rand(-465, 950);
-                /*if(count >= 10){
-                    count = 0
-                    state = win;
-                    
-                }*/
+                state = lose;
+                testEnemy.x = rand(-1055, 350);
+                testEnemy.y = rand(-465, 950);
+                
+
             
             }
-            enemies2[i].render();
+            enemies2[i].renderImage(bomb);
         }
     
-    testEnemy.render();
-    avatar.render();
+    testEnemy.renderImage(bomb);
+    basket.renderImage(basketDesD);
+    //avatar.render();
     
 
     /*-------Level movement threshold----*/
@@ -393,13 +417,18 @@ function game()
         avatar.y += dy*.15; 
     ----------------------------*/
     
-   for(let i=0;i<wall.length; i++)
-   {
-    wall[i].render();
-   }
-    enemyShield.render();
-    sheild.render();
-    avatar.render();
+    for(let i=0;i<wall.length; i++)
+        {
+         if (i % 2 == 0){
+         wall[i].renderImage(wallDesS);
+         }else{
+            wall[i].renderImage(wallDes);
+
+         }
+        }
+
+    avatar.renderImage(smiley);
+
     
 }
 

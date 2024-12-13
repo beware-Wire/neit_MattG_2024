@@ -48,6 +48,16 @@ class GameObject
         this.img.sw=this.img.src.width
         this.img.sh=this.img.src.height
     }
+    renderImage(image)
+    {
+        ctx.save();
+        ctx.fillStyle = this.color
+        ctx.translate(this.x+this.world.x, this.y+this.world.y)
+        ctx.rotate(this.angle*Math.PI/180)
+        ctx.drawImage(image,-this.w/2, -this.h/2, this.w, this.h)
+        ctx.restore();
+    }
+
 
     graphic(_x=this.x,_y=this.y)
     {
